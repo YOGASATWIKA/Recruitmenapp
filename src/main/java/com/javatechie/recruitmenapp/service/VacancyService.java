@@ -6,6 +6,7 @@ import com.javatechie.recruitmenapp.repository.VacancyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,8 @@ import java.util.UUID;
 public class VacancyService {
     @Autowired
     private VacancyRepository repository;
+    @Autowired
+    private VacancyRepository vacancyRepository;
 
     //Create Vacancy
     public Vacancy addVacancy(Vacancy vacancy) {
@@ -26,6 +29,10 @@ public class VacancyService {
 
     public Vacancy getVacancyById(String vacancyId) {
         return repository.findById(vacancyId).get();
+    }
+
+    public List<Vacancy> getActiveVacancy(){
+        return vacancyRepository.findActiveVacancy(LocalDate.now());
     }
 
     public Vacancy updateVacancy(Vacancy vacancyRequest) {
