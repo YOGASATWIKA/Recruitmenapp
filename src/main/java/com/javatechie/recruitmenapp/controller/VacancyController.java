@@ -29,11 +29,6 @@ public class VacancyController {
         return service.findAllVacancy();
     }
 
-    @GetMapping("/{vacancyId}")
-    public Vacancy getVacancy(@PathVariable String vacancyId) {
-        return service.getVacancyById(vacancyId);
-    }
-
     @GetMapping("/active")
     public List<Vacancy> getActiveVacancies() {
         List<Vacancy> activeVacancy = vacancyService.getActiveVacancy();

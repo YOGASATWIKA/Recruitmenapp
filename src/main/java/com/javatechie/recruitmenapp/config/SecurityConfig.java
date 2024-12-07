@@ -21,9 +21,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/vacancy").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/vacancy").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/vacancy/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/vacancy").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/vacancy/active").hasAnyRole("ADMIN", "CANDIDATE")
-                        .requestMatchers(HttpMethod.GET, "/vacancy/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/vacancy").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic();

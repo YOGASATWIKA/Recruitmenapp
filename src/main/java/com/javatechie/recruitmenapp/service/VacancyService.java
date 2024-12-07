@@ -17,24 +17,20 @@ public class VacancyService {
     @Autowired
     private VacancyRepository vacancyRepository;
 
-    //Create Vacancy
+    // Add Vacancy
     public Vacancy addVacancy(Vacancy vacancy) {
         vacancy.setVacancyId(UUID.randomUUID().toString().toString().split("-")[0]);
         return repository.save(vacancy);
     }
-
+    // Find all Vacancy
     public List<Vacancy> findAllVacancy() {
         return repository.findAll();
     }
-
-    public Vacancy getVacancyById(String vacancyId) {
-        return repository.findById(vacancyId).get();
-    }
-
+    // Find Active Vacancy
     public List<Vacancy> getActiveVacancy(){
         return vacancyRepository.findActiveVacancy(LocalDate.now());
     }
-
+    // Update Vacancy
     public Vacancy updateVacancy(Vacancy vacancyRequest) {
         Vacancy existingVacancy = repository.findById(vacancyRequest.getVacancyId()).get();
         existingVacancy.setVacancy(vacancyRequest.getVacancy());
@@ -47,7 +43,7 @@ public class VacancyService {
         existingVacancy.setExpiredDate(vacancyRequest.getExpiredDate());
         return repository.save(existingVacancy);
     }
-
+    //Delete Vacancy
     public String deleteVacancy(String vacancyId){
         repository.deleteById(vacancyId);
         return vacancyId + "Vacancy deleted";

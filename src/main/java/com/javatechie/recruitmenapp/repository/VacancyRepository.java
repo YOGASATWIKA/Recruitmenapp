@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface VacancyRepository extends MongoRepository<Vacancy,String> {
-    // Query untuk mengambil lowongan aktif
+    // Query For Find Active Vacancy in database
     @Query("{ 'expiredDate' : { $gte: ?0 } }")
     List<Vacancy> findActiveVacancy(LocalDate currentDate);
 }
